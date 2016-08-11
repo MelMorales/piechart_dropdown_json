@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+ 
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      
+     
+    function drawChart() {
+    
+     myarea = document.getElementById("thedropdown3").value;
+     
+     
+     info = [{area: "central", baptist: 34, non: 19, cath: 44, sbaptist: 62, unitedm: 19},
+     {area: "east", baptist: 11, non: 2, cath: 2, sbaptist: 14, unitedm: 2},
+     {area: "north", baptist: 6, non: 20, cath: 7, sbaptist: 21, unitedm: 8},
+     {area: "northeast", baptist: 4, non: 5, cath: 2, sbaptist: 14, unitedm: 4},
+     {area: "northwest", baptist: 2, non: 10, cath: 11, sbaptist: 24, unitedm: 7},
+     {area: "south", baptist: 7, non: 5, cath: 8, sbaptist: 21, unitedm: 3},
+     {area: "southwest", baptist: 2, non: 6, cath: 4, sbaptist: 11, unitedm: 2},
+     {area: "west", baptist: 6, non: 17, cath: 10, sbaptist: 22, unitedm: 4}
+     ];
+    
+    
+    for(i=0; i<info.length; i++) { 
+    if(myarea == info[i].area) {
+       baptist = parseInt(info[i].baptist);
+       non = parseInt(info[i].non);
+       cath = parseInt(info[i].cath);
+       sbaptist = parseInt(info[i].sbaptist);
+       unitedm = parseInt(info[i].unitedm);
+    
+    }// end if
+    } // end for
+    
+    var data = google.visualization.arrayToDataTable([
+          ['Churches', 'Number of Top 5 churches'],
+          ['Baptist',     baptist],
+          ['Non-Denominational',      non],
+          ['Roman Catholic',  cath],
+          ['Southern Baptist', sbaptist],
+          ['United Methodist',    unitedm]
+        ]);
+        var options = {
+          colors: ['#83d4c2', '#9bdcce', '#b4e5da', '#cdede6', '#e6f6f2' ],  
+          title: 'Top 5 Across San Antonio, TX Regions'
+        };
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        chart.draw(data, options);
+    
+        
+      } 
+      
+     
+    </script>
+  </head>
+  <body>
+ 
+  <form  action="#" id="form1" name="form1" onchange="drawChart(); return false" >
+     
+     <select id="thedropdown3">
+     <option value="0">Choose:</option>
+     <option value="central">Central</option>
+     <option value="east">East</option>
+     <option value="north">North</option>
+     <option value="northeast">Northeast</option>
+     <option value="northwest">Northwest</option>
+     <option value="south">South</option>
+     <option value="southwest">Southwest</option>
+     <option value="west">West</option>
+     </select>
+    
+  </form>
+  <div style="width:100%">
+    <div id="piechart" style="height: 600px"></div>
+ </div> 
+     
+    
+      
+  </body>
+</html>
